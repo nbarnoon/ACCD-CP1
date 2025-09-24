@@ -33,6 +33,12 @@
                 padding-bottom: 8px;
             }
 
+            /* . means refering to a class */
+            .active {
+                font-weight: bold;
+                    font-size: 1.1em;
+            }
+
             /* this is a last child of oour list item, in this case is blog */
             nav ul li:last-child{
                 border-bottom: none;
@@ -51,6 +57,12 @@
                 nav ul {
                     display: flex;
                     flex-direction: row;
+                    justify-content: space-evenly;
+                }
+
+                nav ul li {
+                    border-bottom: none;
+                    margin: 10x;
                 }
 
             }
@@ -64,7 +76,7 @@
             <nav>
                 <ul> <!--unordered list-->
                     <li><a href="#somelinkhere">Home</a></li>
-                    <li><a href="#somelinkhere">Work</a></li>
+                    <li class="active"><a href="#somelinkhere">Work</a></li>
                     <li><a href="#somelinkhere">Blog</a></li> <!--nobody does about page anymore!!-->
                 </ul>
 
