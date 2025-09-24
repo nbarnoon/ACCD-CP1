@@ -33,11 +33,28 @@
                 padding-bottom: 8px;
             }
 
+            /* this is a last child of oour list item, in this case is blog */
+            nav ul li:last-child{
+                border-bottom: none;
+            }
+
             nav ul a {
                 text-decoration: none;
                 color: black;
                 text-transform: uppercase;
             }
+
+            /* media allows u to communicate something, */
+            @media (min-width: 768px) {
+
+                /*this is gonna look like this on anything equal or larger than 768/ipad */
+                nav ul {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+            }
+
 
         </style>
 
