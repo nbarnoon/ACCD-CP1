@@ -2,7 +2,7 @@ let cStage = document.getElementById("colorStage")
 let cButton = document.getElementById("colorButton")
 
 const qImage = document.getElementById("quokkaImage")
-const qImage = document.getElementById("imageToggle")
+const qButton = document.getElementById("imageToggle")
 
 /* functions are set of actions,
 for example getelementbyid is the function, here our function called changecolor*/
@@ -30,9 +30,16 @@ let fatArrowchangeColor = () =>
 
 let toggleImage = () =>
 {
-    console.log("Button clicked")
+    console.log(qImage.src)
+    if(qImage.src.includes("quokka1")) {
+        qImage.src = "../image/quokka2.jpg"
+    }
+    else {
+        qImage.src = "images/quokka1.jpg"
+    }
 }    
 
 qButton.addEventListener("click", toggleImage)
+tButton.addEventListener("click", toggleImage)
 cButton.addEventListener("click", changeColor)
 window.addEventListener("load", changeColor)
