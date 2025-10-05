@@ -1,8 +1,10 @@
+/* variables */
 let cStage = document.getElementById("colorStage")
 let cButton = document.getElementById("colorButton")
 
 const qImage = document.getElementById("quokkaImage")
 const qButton = document.getElementById("imageToggle")
+const tButton = document.getElementById("triggerImage")
 
 /* functions are set of actions,
 for example getelementbyid is the function, here our function called changecolor*/
@@ -21,23 +23,21 @@ let changeColor = function ()
 
 /* a new way of writing a function is by => for example
 
-let fatArrowchangeColor = () => 
-    {
-    
-    }
+let fatArrowchangeColor = () =>    {   }
 */
 
 
+/* event lists */
 let toggleImage = () =>
 {
     console.log(qImage.src)
-    if(qImage.src.includes("quokka1")) {
-        qImage.src = "../image/quokka2.jpg"
+    if (qImage.src.includes("quokka1")) {
+        qImage.src = "images/quokka2.jpg"
     }
     else {
         qImage.src = "images/quokka1.jpg"
     }
-}    
+}  
 
 qButton.addEventListener("click", toggleImage)
 tButton.addEventListener("click", toggleImage)
