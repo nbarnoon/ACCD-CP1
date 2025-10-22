@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Building a product interface in Blender</title>
+  <style>
+    
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 1.6;
+        margin: 40px auto;
+        max-width: 800px;
+        padding: 0 20px;
+        background-color: #f7f8fa;
+        color: #222;
+    }
+
+    h1 {
+      font-size: 2.1em;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 1.5em;
+      font-weight: 700;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-top: 2em;
+      color: #2a2a2a;
+    }
+    p {
+      margin-bottom: 1.2em;
+    }
+    img {
+      width: 100%;
+      max-width: 700px;
+      display: block;
+      margin: 1em auto;
+      border-radius: 8px;
+    }
+
+    </style>
+</head>
+<body>
+
+  <h1>Canvas Dashboard Interface in Blender</h1>
+
+  <p>
+    I started creating my scene by imagining the context in which users would interact with my redesigned Canvas desktop dashboard. 
+    The end users are mostly undergraduate and graduate students, so I decided to build a <strong>student room setting</strong> — 
+    a simple, functional workspace with a table, chair, desk lamp, bamboo plant (in progress), and a laptop (in progress). 
+    This is the environment where students would use the desktop version of Canvas.
+  </p>
+
+  <h2>1. Table / Desk</h2>
+  <p>
+    The first object I created was the desk. I used the <strong>Mirror Modifier</strong> for the legs to make the modeling process faster 
+    and keep the proportions symmetrical. The desk has a simple, boxy shape to reflect a realistic student table, 
+    with shelves modeled as scaled cubes under one side for structure and visual interest.
+  </p>
+  <img src="images/img1.png" alt="Desk model screenshot">
+
+  <h2>2. Desk Lamp</h2>
+  <p>
+    Next, I created a desk lamp using a few simple primitives. 
+    I started with a <strong>cylinder for the base</strong>, another cylinder for the stem, and a <strong>UV sphere for the head</strong> of the lamp. 
+    I deleted the bottom faces of the sphere to make it a half dome and positioned it to face downward. 
+    Finally, I added a <strong>light source</strong> inside the dome to simulate illumination.
+  </p>
+  <img src="images/img2.png" alt="Lamp model screenshot">
+
+  <h2>3. MacBook (In Progress)</h2>
+  <p>
+    The laptop is still in progress. For now, I modeled the <strong>base and screen</strong> using cubes, keeping the proportions realistic. 
+    The next step is to angle the screen slightly backward and later texture it with the redesigned Canvas dashboard interface.
+  </p>
+  <img src="images/img5.png" alt="MacBook model screenshot">
+
+  <h2>4. Bamboo Plant (In Progress)</h2>
+  <p>
+    To personalize the space, I decided to add a bamboo plant, inspired by my own workspace. 
+    The <strong>pot</strong> was made using a cylinder with the top face inset and extruded inward to hollow it out. 
+    For the bamboo stalks, I added several thin cylinders and plan to add leaves later using planes shaped and bent to resemble natural leaves.
+  </p>
+  <img src="images/img4.png" alt="Bamboo model screenshot">
+
+  <h2>5. Chair (In Progress)</h2>
+  <p>
+    I began modeling a chair to complete the scene. For now, I’ve created a basic seat, legs, and a rectangular backrest. 
+    I’m still experimenting with the proportions and design before finalizing it.
+  </p>
+  <img src="images/img3.png" alt="Chair model screenshot">
+
+  <p>
+    Overall, this week’s focus was on <strong>blocking out the main elements</strong> of the environment and using simple modeling 
+    techniques like scaling, extrusion, and mirroring. In the next step, I’ll refine proportions, add smaller details, 
+    and start texturing and lighting for a more realistic look.
+  </p>
+
+</body>
+</html>
