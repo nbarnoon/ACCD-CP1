@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finish Blender Prototype</title>
+  <style>
+    
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        line-height: 1.6;
+        margin: 40px auto;
+        max-width: 800px;
+        padding: 0 20px;
+        background-color: #f7f8fa;
+        color: #222;
+    }
+
+    h1 {
+      font-size: 2.1em;
+      color: #1c1c1c;
+      text-align: center;
+      margin-bottom: 1.5em;
+      font-weight: 700;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin-top: 2em;
+      color: #2a2a2a;
+    }
+    p {
+      margin-bottom: 1.2em;
+    }
+    img {
+      width: 100%;
+      max-width: 700px;
+      display: block;
+      margin: 1em auto;
+      border-radius: 8px;
+    }
+
+    </style>
+</head>
+<body>
+
+  <h1>Canvas Dashboard Interface in Blender</h1>
+  <p>
+    This work continues from my Week 5 Blender project, where I first started building the room scene.
+  </p>
+
+  <p>
+    I started creating my scene by imagining the context in which users would interact with my redesigned Canvas desktop dashboard. 
+    The end users are mostly undergraduate and graduate students, so I decided to build a <strong>student room setting</strong> — 
+    a simple, functional workspace with a table, chair, desk lamp, bamboo plant (in progress), and a laptop (in progress). 
+    This is the environment where students would use the desktop version of Canvas.
+  </p>
+
+  <h2>1. Room setup</h2>
+  <p>
+    I first added a cube, scaled it, and deleted two of its faces to make it look like a room. I also used the <strong>boolean modifier</strong> 
+    (Difference) on the left wall to cut out a window shape. 
+  </p>
+  <img src="images/img1.png" alt="cube">
+  <p>
+    Later I changed the approach: I deleted that box and rebuilt the room
+    using three planes for the walls and floor.
+  </p>
+  <img src="images/img2.png" alt="walls and floor">
+
+  <h2>2. Materials</h2>
+
+
+  <p>
+    I hid the floor and walls so I could focus on the furniture. Then I
+    started adding materials in the <strong>Shading tab.</strong> 
+  </p>
+
+  <h3>Desk/Table</h3>
+  <p>
+    For the table, I gave it a wood texture with a blue/green tint using <strong>Shading tab.</strong> 
+  </p>
+  <img src="images/img3.png" alt="table1.0">
+  <img src="images/img4.png" alt="table1.1">
+
+  <h3>Chair</h3>
+  <p>
+    For the chair, I added a leather material to the sitting area and chosed grayish-blue color for chair legs.
+  </p>
+  <img src="images/img5.png" alt="chair">
+
+  <h3>Bamboo Plant</h3>
+  <p>
+    I kept going and added materials to the pot and the bamboo plant.
+  </p>
+  <img src="images/img6.png" alt="bamboo">
+ 
+  <h3>Laptop</h3>
+  <p>
+    For the laptop I modeled earlier, and the keyboard I made using <strong>cubes
+    + an Array modifier</strong>, I also added materials. I used <strong>Image Texture</strong>
+    instead of just a color and put in the Canvas dashboard PNG that I
+    exported from Figma, so the laptop screen shows that image.
+  </p>
+  <img src="images/img7.png" alt="laptop">
+  
+  <h3>Walls and Floor</h3>
+  <p>
+    I also added materials to the room itself. I gave the walls some
+    texture, and I made the floor look like wood.
+  </p>
+  <img src="images/img8.png" alt="walls and floor">
+
+
+  
+  
+<h3>Final Renderings</h3>
+  <img src="images/img9.png" alt="final">
+  <img src="images/img10.png" alt="final1.0">
+  
+  <video controls width="800">
+  <source src="recording/video.mp4" type="video/mp4" />
+  </video>
+
+</body>
+</html>
