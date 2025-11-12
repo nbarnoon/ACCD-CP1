@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Rhythmic Pattern — p5.js Study (Nazanin Barnoon)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --bg:#0b0b0c; --fg:#e8e8ea; --muted:#a6a6ad; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--fg); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    main { max-width: 800px; margin: 32px auto; padding: 0 16px 64px; }
+    h1, h2, h3 { line-height:1.25; }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; }
+    h2 { font-size: 1.25rem; margin-top: 28px; }
+    p, li { color: var(--fg); }
+    .muted { color: var(--muted); }
+    .frame-wrap { margin: 16px 0 8px; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 30px rgba(0,0,0,0.35); }
+    iframe { width: 100%; height: 480px; border: 0; display:block; background:#111; }
+    a { color: #9fd3ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { background: #141418; padding: 2px 6px; border-radius: 6px; }
+    ul { padding-left: 20px; }
+    footer { margin-top: 48px; font-size: 0.9rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Rhythmic Composition in p5.js</h1>
+      <p class="muted">By Nazanin Barnoon</p>
+    </header>
+
+    <section aria-labelledby="sketch">
+      <h2 id="sketch">Interactive Sketch</h2>
+      <div class="frame-wrap">
+        <!-- Embedded p5.js sketch -->
+        <iframe
+          title="p5.js Rhythmic Pattern by Nazanin Barnoon"
+          src="https://editor.p5js.org/nbarnoon/full/C2tVSzgHL">
+        </iframe>
+      </div>
+    </section>
+
+ 
+      
+
+
+    <section aria-labelledby="problems">
+      <h2 id="problems">Problems Encountered &amp; Solutions</h2>
+      <ul>
+        <li><strong>Colors felt too fast and distracting.</strong><br />
+          <em>Solution:</em> Separated motion and color timing by using two time variables 
+          (<code>tmove = frameCount * 0.1</code> for motion; <code>tcolor</code> slower for hue). This created a layered rhythm.
+        </li>
+        <li><strong>Pattern looked repetitive across the grid.</strong><br />
+          <em>Solution:</em> Introduced gentle <code>noise()</code> to vary size/brightness per tile, adding organic differences without breaking the composition.
+        </li>
+        <li><strong>Animation appeared to “stop” after a while.</strong><br />
+          <em>Cause:</em> Using a lightening blend mode with a translucent background caused trails to saturate.<br />
+          <em>Solution:</em> Switched to <code>blendMode(BLEND)</code> and slightly increased background alpha so trails fade properly.
+        </li>
+        <li><strong>Movement needed more presence.</strong><br />
+          <em>Solution:</em> Increased speed factor in <code>tmove</code> to <code>0.1</code>, which added energy while keeping motion smooth.
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="reflection">
+      <h2 id="reflection">Reflection</h2>
+      <p>
+        The most interesting issue was that the animation seemed to “freeze” after running for a short time. 
+        Initially I suspected the trigonometric motion, but the real cause was my rendering pipeline: I was drawing 
+        with a lightening blend mode while also using a very transparent background. With <code>LIGHTEST</code> (or similar), 
+        pixels can only get brighter; they never fade. Over time the trails saturated to a uniform state, so the frame 
+        looked motionless even though the sine/cosine offsets were still updating every frame.
+      </p>
+      <p>
+        I solved this by switching to <code>blendMode(BLEND)</code> and modestly increasing the background’s alpha on each redraw. 
+        This allowed previous strokes to decay gradually, restoring a sense of continuous movement and rhythm. 
+        The fix also improved legibility: the motion reads as intentional “breathing” instead of smeared build-up. 
+        The takeaway is that visual rhythm isn’t only about position and color—your compositing and clearing strategy 
+        are equally critical to how motion is perceived.
+      </p>
+    </section>
+
+    <section aria-labelledby="notes">
+      <h2 id="notes">Notes on Requirements</h2>
+      <ul>
+        <li>Color mode: <strong>HSB</strong> is used to show variations in hue, saturation, and brightness.</li>
+        <li>Loops: a nested loop tiles the entire window.</li>
+        <li>Composition &amp; tiling: a regular grid with per-tile variation.</li>
+        <li>Animation: non-linear motion via <code>sin</code>/<code>cos</code>, plus optional <code>noise()</code> variation.</li>
+        <li>Documentation: problems/solutions list and this focused reflection.</li>
+      </ul>
+    </section>
+
+
+  </main>
+</body>
+</html>
