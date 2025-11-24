@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orbiting Moon & Noise-Driven Comet – Process Documentation</title>
+  <style>
+    body {
+      font-family:Arial, Helvetica, sans-serif;
+      background: #f0f0f0;
+      color: #171717;
+      margin: 0;
+      padding: 0 1.5rem 3rem;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      margin-top: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.25rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    figure {
+      margin: 2rem 0;
+      background: rgb(212, 212, 212)
+      border-radius: 60px;
+      padding: 1rem;
+      /*border: 1px solid rgba(0,0,0,0.15);*/
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      color: #333;
+    }
+
+    figcaption {
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+      border-radius: 20px;
+      color: #797979;
+    }
+
+    .iteration-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    small {
+      color: #1d1d1d;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Orbiting Moon & Noise-Driven Comet</h1>
+    <p>
+      This sketch explores layered motion in a small solar system: a moon orbiting a planet with
+      trigonometric motion, and a comet that appears at time intervals and follows an organic,
+      noise-bent path. The goal was to combine repeated motion, time-based events, and randomness
+      to create a de-synchronized, futuristic rhythm.
+    </p>
+
+    <h2>Final Sketch</h2>
+    <p>
+      The final p5.js sketch is embedded below:
+    </p>
+
+    <!-- Embedded p5.js sketch -->
+     <iframe src="https://editor.p5js.org/nbarnoon/full/B6To99bcX"></iframe>
+
+    <h2>Process & Iterations</h2>
+
+    <!-- Iteration 1 -->
+    <figure>
+      <img src="images/img1.png" alt="Planet with orbiting moon but no orbit path">
+      <figcaption>
+        <div class="iteration-title">Iteration 1 – Planet and Moon (No Orbit Path)</div>
+        <small>Trigonometric repeated motion</small><br>
+        I started with a dark background, a central planet, and a moon moving in a circular orbit using
+        <code>cos()</code> and <code>sin()</code>. At this stage, only the motion existed – there was no
+        visual orbit line yet, just the repeated movement around the planet.
+      </figcaption>
+    </figure>
+
+    <!-- Iteration 2 -->
+    <figure>
+      <img src="images/img2.png" alt="Planet with orbiting moon and circular orbit path">
+      <figcaption>
+        <div class="iteration-title">Iteration 2 – Adding the Orbit Path</div>
+        <small>Clarifying motion visually</small><br>
+        Next I added a thin ellipse around the planet to show the orbit path. This made the motion
+        more legible and helped emphasize that the moon is following a stable, cyclical trajectory
+        rather than just floating around.
+      </figcaption>
+    </figure>
+
+    <!-- Iteration 3 -->
+    <figure>
+      <img src="images/img3.png" alt="Simple comet moving without tail">
+      <figcaption>
+        <div class="iteration-title">Iteration 3 – First Comet (No Tail)</div>
+        <small>Time-based second object</small><br>
+        I introduced the comet as the second moving shape. It spawns from either the left or right
+        edge after a fixed time interval using <code>millis()</code>, then moves across the canvas.
+        At this point the comet was just a glowing dot with a simple, almost linear path.
+      </figcaption>
+    </figure>
+
+    <!-- Iteration 4 -->
+    <figure>
+      <img src="images/img4.png" alt="Comet with a thin linear tail">
+      <figcaption>
+        <div class="iteration-title">Iteration 4 – Comet with Thin Tail</div>
+        <small>Visualizing motion over time</small><br>
+        To show the direction of motion, I added a thin tail behind the comet using a line with a
+        smaller stroke weight. The comet still moved in a straight path, but now its trajectory was
+        easier to read and it began to feel more like a moving body in space.
+      </figcaption>
+    </figure>
+
+    <!-- Iteration 5 -->
+    <figure>
+      <img src="images/img5.png" alt="Comet with a thicker, brighter tail">
+      <figcaption>
+        <div class="iteration-title">Iteration 5 – Stronger Tail and Fading</div>
+        <small>Emphasizing presence and timing</small><br>
+        I increased the tail’s stroke weight to give the comet more presence and added a fade-out
+        over time using an alpha value mapped from its lifetime. The comet now appears in bursts:
+        it shows up, travels, and gradually disappears, reinforcing the idea of a timed event.
+      </figcaption>
+    </figure>
+
+    <!-- Iteration 6 -->
+    <figure>
+      <img src="images/img6.png" alt="Comet following a curved, organic path">
+      <figcaption>
+        <div class="iteration-title">Iteration 6 – Noise-Driven, Organic Comet Path</div>
+        <small>Randomness & Perlin noise</small><br>
+        I replaced the comet’s linear motion with a noise-bent direction. Each frame, Perlin noise
+        slightly adjusts the comet’s angle, and its position is updated with <code>cos()</code> and
+        <code>sin()</code>. This creates an organic, curved trajectory that feels less mechanical
+        and more like a body drifting under subtle forces.
+      </figcaption>
+    </figure>
+
+    <!-- Iteration 7 -->
+    <figure>
+      <img src="images/img7.png" alt="Final scene with custom starfield background">
+      <figcaption>
+        <div class="iteration-title">Iteration 7 – Custom Starfield Background</div>
+        <small>Refining the environment</small><br>
+        I experimented with using a photographic space image as a background, but it overpowered
+        the animation. In the final version I removed it and instead generated my own starfield by
+        randomly placing ~300 stars with different sizes and brightness values. This procedural
+        approach keeps the scene cohesive and supports the animation without distracting from it.
+      </figcaption>
+    </figure>
+
+  </main>
+</body>
+</html>
