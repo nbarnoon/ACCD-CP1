@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zen Koi Pond – Object-Oriented System</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+      line-height: 1.7;
+      background: #f4f6f2; /* soft, zen-like off-white/green */
+      color: #222;
+    }
+    .page {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px 24px 32px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+    }
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      margin-top: 1.4em;
+      margin-bottom: 0.4em;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 2.1rem;
+      letter-spacing: 0.02em;
+    }
+    em {
+      color: #667070;
+    }
+    p {
+      margin: 0.3em 0 0.9em;
+    }
+    ul {
+      margin-top: 0.2em;
+      margin-bottom: 0.9em;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 12px 0 24px;
+      border-radius: 10px;
+    }
+    figure {
+      margin: 0 0 24px;
+    }
+    figure figcaption {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 6px;
+    }
+    code {
+      background: #e6eee8;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #777;
+    }
+    iframe {
+      border: none;
+      border-radius: 16px;
+      margin-top: 16px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6c7a76;
+      background: #e6ece5;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <span class="badge">Interaction & Systems</span>
+    <h1>Zen Koi Pond</h1>
+    <p><em>An object-oriented, emergent system modeled in p5.js.</em></p>
+
+    <!-- Embedded p5.js sketch -->
+    <iframe
+      src="https://editor.p5js.org/nbarnoon/full/3agOjR-9c"
+      width="800"
+      height="800"
+      title="Zen Koi Pond Sketch">
+    </iframe>
+
+    <h2>Intent</h2>
+    <p>
+      For this assignment, I chose to model a small, meditative koi pond as a dynamic system.
+      My goal was to create a calm environment where a few simple object-oriented elements—
+      koi fish, floating leaves, and water flow—interact through local rules and gradually
+      form richer, emergent patterns of movement.
+    </p>
+    <p>
+      The graphics are intentionally stylized rather than realistic. Each koi is drawn using
+      basic shapes with a small ripple symbol behind its tail, and the obstacles in the water
+      began as “rocks” but later evolved into soft, leaf-like forms that feel more appropriate
+      for a Zen garden. The focus of the project is on relationships and behaviors,
+      not detailed illustration.
+    </p>
+
+    <h2>System Overview</h2>
+    <p>
+      The pond is implemented using three main classes:
+      <strong>KoiFish</strong>, <strong>Water</strong>, and <strong>Leaf</strong>.
+      A global sketch coordinates these objects, runs the main update loop, and connects
+      the system to user input.
+    </p>
+
+    <h3>Classes and Responsibilities</h3>
+
+    <h4>KoiFish</h4>
+    <ul>
+      <li>
+        <strong>Properties</strong>:
+        position (<code>pos</code> as a <code>p5.Vector</code>),
+        velocity (<code>vel</code>),
+        radius (<code>rad</code> for collision and edge checks),
+        color, facing angle (<code>angle</code>),
+        and a few values used for schooling behavior.
+      </li>
+      <li>
+        <strong>Methods</strong>:
+        <ul>
+          <li>
+            <code>swim()</code> &mdash; updates the koi’s position based on its velocity
+            and makes it bounce off the edges of the canvas, updating its facing angle
+            when it changes direction.
+          </li>
+          <li>
+            <code>display(water)</code> &mdash; draws the koi, rotated in the direction of motion,
+            with a simple body, tail, fins, and a small ripple symbol behind it.
+          </li>
+          <li>
+            <code>makeFriends(others)</code> &mdash; implements a soft schooling behavior:
+            when other koi are close enough, this method gently steers the fish toward them
+            and limits its speed, so groups form and dissolve over time.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Water</h4>
+    <ul>
+      <li>
+        <strong>Properties</strong>:
+        a <code>flow</code> vector and a <code>strength</code> value representing the
+        direction and intensity of the current.
+      </li>
+      <li>
+        <strong>Methods</strong>:
+        <ul>
+          <li>
+            <code>applyTo(koi)</code> &mdash; slightly nudges each koi in the direction of the
+            current, creating a subtle drift that affects all fish in the pond.
+          </li>
+          <!-- If you added directional changes, you can mention them:
+          <li><code>changeDirection(dx, dy)</code> &mdash; updates the flow direction.</li>
+          <li><code>changeStrength(newStrength)</code> &mdash; adjusts how strong the current is.</li>
+          -->
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Leaf (formerly Rock)</h4>
+    <p>
+      The stationary elements in the pond went through a small design iteration.
+      I first implemented them as <strong>Rock</strong> objects: heavy shapes sitting
+      on the bottom of the pond. Visually, however, the scene felt too static and heavy.
+      I then redesigned them as <strong>Leaf</strong> objects: soft, slightly curved
+      shapes that float visually and fit better with the idea of a light, Zen-like garden.
+      The class name and code were updated to reflect this change.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Properties</strong>:
+        position (<code>pos</code> as a <code>p5.Vector</code>),
+        leaf <code>size</code>, a base green color, a lighter highlight color,
+        and a random <code>angle</code> so each leaf has a slightly different orientation.
+      </li>
+      <li>
+        <strong>Methods</strong>:
+        <ul>
+          <li>
+            <code>display(isHighlighted)</code> &mdash; draws a leaf-shaped form using
+            two mirrored arcs and a central vein. When <code>isHighlighted</code> is
+            <code>true</code>, the leaf is drawn with a lighter, glowing color, so the pond
+            visually responds to nearby koi.
+          </li>
+          <li>
+            <code>isNear(koi)</code> &mdash; measures the distance between the leaf and a koi.
+            If the fish is within a certain radius, the leaf can react (for example, by highlighting).
+          </li>
+          <li>
+            <code>repel(koi)</code> &mdash; gently pushes koi away when they get too close,
+            so fish do not pass straight through the leaves. This also slightly rotates
+            the koi’s velocity and updates its angle, creating natural-looking avoidance.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Global Sketch (System Controller)</h4>
+    <ul>
+      <li>Maintains lists: <code>koilist : KoiFish[]</code> and <code>leaflist : Leaf[]</code>, plus a single <code>water : Water</code> instance.</li>
+      <li>Implements p5.js lifecycle functions: <code>setup()</code>, <code>draw()</code>, and <code>mousePressed()</code>.</li>
+      <li>Coordinates interactions between all objects each frame.</li>
+      <li>Handles user input: mouse clicks add new koi into the pond.</li>
+    </ul>
+
+    <h2>UML Diagram</h2>
+    <p>
+      The UML diagram below summarizes the structure of the system: the main classes,
+      their attributes and methods, and how they relate to the global sketch.
+    </p>
+
+    <figure>
+      <!-- update this src to your actual UML image -->
+      <img src="images/img1.png" alt="UML diagram of the Zen Koi Pond system" />
+      <figcaption>
+        Figure 1. UML class diagram for <em>KoiFish</em>, <em>Water</em>, <em>Leaf</em>,
+        and the main sketch controller.
+      </figcaption>
+    </figure>
+
+    <h2>Flow of the System</h2>
+    <p>
+      The runtime behavior follows the standard p5.js pattern: a one-time
+      <code>setup()</code> call and a continuous <code>draw()</code> loop that updates
+      and renders the pond.
+    </p>
+    <ul>
+      <li>
+        <strong><code>setup()</code></strong> (runs once):
+        <ul>
+          <li>Create the canvas and set basic text alignment.</li>
+          <li>Initialize the <code>water</code> object with a default flow direction.</li>
+          <li>Create an initial <code>KoiFish</code> at the center of the pond.</li>
+          <li>Create several <code>Leaf</code> objects at random positions.</li>
+        </ul>
+      </li>
+      <li>
+        <strong><code>draw()</code></strong> (runs every frame):
+        <ul>
+          <li>Clear the background with a water-like color.</li>
+          <li>
+            For each <code>Leaf</code>:
+            <ul>
+              <li>Assume it is not highlighted at the start of the frame.</li>
+              <li>Check its distance to each koi using <code>leaf.isNear(koi)</code>.</li>
+              <li>If a koi is close, highlight the leaf and call <code>leaf.repel(koi)</code> to push the fish away slightly.</li>
+              <li>Draw the leaf with <code>leaf.display(highlighted)</code>.</li>
+            </ul>
+          </li>
+          <li>
+            For each <code>KoiFish</code>:
+            <ul>
+              <li>Update movement with <code>koi.swim()</code> (including bouncing at edges).</li>
+              <li>Apply water flow using <code>water.applyTo(koi)</code>.</li>
+              <li>Apply schooling behavior via <code>koi.makeFriends(koilist)</code>, steering gently toward neighbors.</li>
+              <li>Render the fish using <code>koi.display(water)</code>.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong><code>mousePressed()</code></strong>:
+        <ul>
+          <li>Whenever the user clicks, create a new <code>KoiFish</code> at <code>(mouseX, mouseY)</code>.</li>
+          <li>Add the new fish to <code>koilist</code>, changing the density and behavior of the pond over time.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <figure>
+      <!-- update this src to your actual flowchart image -->
+      <img src="images/img2.png" alt="Flowchart of the Zen Koi Pond system" />
+      <figcaption>
+        Figure 2. Flowchart showing initialization, the draw loop, object interactions,
+        and user input.
+      </figcaption>
+    </figure>
+  
+
+    <h2>User Interaction</h2>
+    <p>
+      The system includes simple, direct user control. Every mouse click introduces
+      a new koi into the pond at the click location. Because each fish starts with
+      its own random velocity and then responds to water flow, walls, leaves, and
+      neighboring koi, each click subtly changes the overall composition and motion
+      of the system.
+    </p>
+    <!-- If you later add key controls, you can document them here:
+    <ul>
+      <li><strong>Arrow keys</strong> &mdash; change water flow direction.</li>
+    </ul>
+    -->
+
+    <h2>Emergent Properties</h2>
+    <p>
+      I did not hard-code fixed patterns or predefined paths for the fish.
+      Instead, the system relies on simple local rules:
+    </p>
+    <ul>
+      <li>Each koi moves with its own velocity and bounces inside the boundaries.</li>
+      <li>All koi are gently pushed by the same water flow vector.</li>
+      <li>When other koi are close, each fish slightly steers toward its neighbors.</li>
+      <li>Leaves repel koi at close range, causing small detours and changes in grouping.</li>
+    </ul>
+    <p>
+      From these rules, more complex behavior emerges: small groups of koi form,
+      drift together, break apart, and re-form in other parts of the pond. The
+      highlighted leaves provide feedback whenever fish swim nearby, making the
+      whole scene feel connected and alive, even though each object only follows
+      its own simple logic.
+    </p>
+
+    <h2>Interactive Sketch</h2>
+    <p>
+      The embedded p5.js sketch at the top of this page shows the final version
+      of the Zen Koi Pond. Moving the mouse and clicking to add new fish gradually
+      reshapes the system and reveals different emergent patterns over time.
+    </p>
+  </div>
+</body>
+</html>
