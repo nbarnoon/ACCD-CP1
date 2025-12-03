@@ -110,6 +110,10 @@
       for a Zen garden. The focus of the project is on relationships and behaviors,
       not detailed illustration.
     </p>
+    <p>
+        The leaves are responsive elements: each one shifts to a softer, glowing green when a koi swims close to it, adding a quiet visual feedback to the pond.
+    </p>
+
 
     <h2>System Overview</h2>
     <p>
@@ -183,6 +187,10 @@
       shapes that float visually and fit better with the idea of a light, Zen-like garden.
       The class name and code were updated to reflect this change.
     </p>
+    <p>
+        Each leaf also reacts to nearby koi. When a fish swims close, the leaf’s fill color changes to a lighter green. This highlight effect helps communicate proximity and creates a gentle sense of responsiveness in the environment.
+    </p>
+
 
     <ul>
       <li>
@@ -199,6 +207,7 @@
             two mirrored arcs and a central vein. When <code>isHighlighted</code> is
             <code>true</code>, the leaf is drawn with a lighter, glowing color, so the pond
             visually responds to nearby koi.
+            <code>display(isHighlighted)</code> – draws the leaf-shaped stone and changes its color when highlighted.
           </li>
           <li>
             <code>isNear(koi)</code> &mdash; measures the distance between the leaf and a koi.
@@ -303,11 +312,7 @@
       neighboring koi, each click subtly changes the overall composition and motion
       of the system.
     </p>
-    <!-- If you later add key controls, you can document them here:
-    <ul>
-      <li><strong>Arrow keys</strong> &mdash; change water flow direction.</li>
-    </ul>
-    -->
+   
 
     <h2>Emergent Properties</h2>
     <p>
