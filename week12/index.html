@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Find Your Interface – Teachable Machine Painting Game</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+      line-height: 1.7;
+      background: #f4f6f2; /* soft, zen-like off-white/green */
+      color: #222;
+    }
+    .page {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px 24px 32px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+    }
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      margin-top: 1.4em;
+      margin-bottom: 0.4em;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 2.1rem;
+      letter-spacing: 0.02em;
+    }
+    em {
+      color: #667070;
+    }
+    p {
+      margin: 0.3em 0 0.9em;
+    }
+    ul {
+      margin-top: 0.2em;
+      margin-bottom: 0.9em;
+      padding-left: 1.4em;
+    }
+    li {
+      margin-bottom: 0.25em;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 12px 0 24px;
+      border-radius: 10px;
+    }
+    figure {
+      margin: 0 0 24px;
+    }
+    figure figcaption {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 6px;
+    }
+    code {
+      background: #e6eee8;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #777;
+    }
+    iframe {
+      border: none;
+      border-radius: 16px;
+      margin-top: 16px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6c7a76;
+      background: #e6ece5;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <span class="badge">Find Your Interface · P5.js + ML5.js</span>
+    <h1>Analogue Tools, Digital Canvas</h1>
+
+
+    <iframe
+      src="https://editor.p5js.org/nbarnoon/full/ZuniqrSY-"
+      width="800"
+      height="500"
+      title="Analog Tools – Digital Canvas Prototype">
+    </iframe>
+
+    
+    <h2>Proposal</h2>
+    <p>
+      In this project, I explore how everyday objects can become <em>controllers</em> for a digital
+      drawing experience without any physical connection to the computer. Using a webcam and a custom
+      image classifier built in Google’s Teachable Machine, I trained a model to recognize six categories:
+      a pencil, a marker, a circular object, a rectangular object, a sheet of paper, and a “neither” state.
+    </p>
+    <p>
+      In the browser, <code>ml5.js</code> connects this trained model to a <code>p5.js</code> sketch.
+      The recognized object determines the active drawing mode on the canvas. When different objects are
+      held up to the webcam, the system automatically generates different types of marks and shapes:
+    </p>
+    <ul>
+      <li>When I show a <strong>pencil</strong>, the system draws a thin, light line.</li>
+      <li>When I show a <strong>marker</strong>, it switches to a heavier, bolder line.</li>
+      <li>When I show a <strong>circle-shaped object</strong>, the system draws circles.</li>
+      <li>When I show a <strong>rectangular object</strong>, it draws rectangles.</li>
+      <li>When I show a <strong>sheet of paper</strong>, the canvas is cleared, like starting on a new page.</li>
+      <li>When <strong>no known object</strong> is detected (“neither”), the system keeps the current mode and does not switch tools.</li>
+    </ul>
+    <p>
+      Note: during testing, the system sometimes confuses the marker with the pencil. To improve reliability, I may either
+      retrain the model with more data or remove one of the two tools in a future iteration.
+    </p>
+
+    <!-- SYSTEM DIAGRAM -->
+    <h3>Diagram</h3>
+    <figure>
+    <img src="images/diagram.png" alt="System Flow Diagram" />
+    <figcaption>System diagram showing how physical objects are translated into drawing behaviors on the canvas.</figcaption>
+    </figure>
+
+    <!-- TRAINING SET 1: PENCIL, CIRCLE, SQUARE -->
+    <h3>Pencil, Circle, and Square classes</h3>
+    <figure>
+    <img src="images/img1.png" alt="Training samples: Pencil, Circle, and Square classes" />
+    <figcaption>Training samples for the Pencil, Circle, and Square classes.</figcaption>
+    </figure>
+
+    <!-- TRAINING SET 2: SQUARE, PAPER, NEITHER -->
+    <h3>Square, Paper, and Neither classes</h3>
+    <figure>
+    <img src="images/img2.png" alt="Training samples: Square, Paper, and Neither classes" />
+    <figcaption>Training samples for the Square, Paper, and Neither classes.</figcaption>
+    </figure>
+
+  
+  </div>
+</body>
+</html>
