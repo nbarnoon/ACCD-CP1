@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kandinsky Cam Paint — Documentation</title>
+
+  <style>
+    :root {
+      --bg: #f7f2e6;          /* light beige / paper tone */
+      --panel: #ffffff;
+      --text: #111111;
+      --muted: #555555;
+      --line: #e6e0d3;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 18px 24px;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 18px 40px;
+      display: grid;
+      gap: 16px;
+    }
+
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    h3 {
+      margin: 16px 0 6px;
+      font-size: 16px;
+    }
+
+    p { margin: 8px 0; }
+
+    ol {
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+
+    ol li {
+      margin: 10px 0;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .sketchWrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      margin-top: 12px;
+    }
+
+    .sketchWrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    figure {
+      margin: 12px 0 0;
+      padding: 12px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.6);
+    }
+
+    figcaption {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Kandinsky Cam Paint</h1>
+  <p class="subtitle">
+    A camera-based digital painting experience where physical objects and hand gestures
+    generate abstract compositions inspired by Wassily Kandinsky’s visual language.
+  </p>
+</header>
+
+<main>
+
+  <!-- HOW TO USE -->
+  <section>
+    <h2>How to use</h2>
+
+    <ol>
+      <li>Show <strong>Paper</strong> to the camera to activate the canvas.</li>
+      <li>Choose a drawing input:
+        <strong>Circle</strong> generates circles,
+        <strong>Square</strong> generates squares,
+        <strong>Pencil</strong> draws black lines,
+        <strong>Palm</strong> (left or right) generates triangles.
+      </li>
+      <li>Show a <strong>Fist</strong> to toggle brush thickness (thin ↔️ thick).</li>
+      <li>Show <strong>Paper</strong> again to reset the canvas.</li>
+    </ol>
+
+    <p class="muted">
+      The system relies on webcam classification confidence. Small fluctuations in recognition
+      are part of the interaction.
+    </p>
+  </section>
+
+  <!-- LIVE PROTOTYPE -->
+  <section>
+    <h2>Live prototype</h2>
+
+    <p>
+      Allow camera access when prompted. Best experienced on desktop (Chrome).
+    </p>
+
+    <div class="sketchWrap">
+      <iframe
+        src="https://editor.p5js.org/nbarnoon/full/zXbXMtPms"
+        allow="camera; microphone"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p class="muted">
+      If the embed does not load, open it directly:
+      <a href="https://editor.p5js.org/nbarnoon/full/zXbXMtPms" target="_blank" rel="noopener">
+        p5.js full sketch
+      </a>
+    </p>
+  </section>
+
+  <!-- RECORDING -->
+  <section>
+  <h2>Recording</h2>
+
+  <p>
+    This recording documents the interaction flow of the prototype, showing how physical
+    objects and hand gestures are translated into abstract marks on the canvas.
+  </p>
+
+  <video
+    controls
+    preload="metadata"
+    style="width:100%; border-radius:14px; border:1px solid #e6e0d3; margin-top:12px;"
+  >
+    <source src="recording/screenrecording.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <p class="muted">
+    Demo recorded during development to capture interaction behavior and visual outcomes.
+  </p>
+</section>
+
+
+  <!-- PROJECT OVERVIEW -->
+  <section>
+    <h2>Project overview</h2>
+
+    <p>
+      Kandinsky Cam Paint explores an alternative way of painting digitally—without buttons,
+      menus, or traditional UI controls. Instead, the system reads the physical world through
+      a webcam and translates recognized objects and gestures into abstract marks.
+    </p>
+
+    <p>
+      The visual inspiration comes from Wassily Kandinsky’s work: strong black linework,
+      geometric forms, rhythm, and spatial tension. Rather than copying specific paintings,
+      the goal is to capture the spirit of abstraction and composition through generative behavior.
+    </p>
+
+    <p>
+      The experience is intentionally simple and playful, allowing users to create expressive
+      compositions using everyday objects and their own hands.
+    </p>
+  </section>
+
+  <!-- DIAGRAM -->
+  <section>
+    <h2>System diagram</h2>
+
+    <figure>
+      <img src="images/part2-diagram.png" alt="Teachable Machine training classes screenshot" style="width:100%; border-radius:10px;">
+      <figcaption>
+        Training overview: all object and gesture classes used in the Teachable Machine model.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/img2.png" alt="System diagram" style="width:100%; border-radius:10px;">
+      <img src="images/img3.png" alt="System diagram" style="width:100%; border-radius:10px;">
+      <img src="images/img4.png" alt="System diagram" style="width:100%; border-radius:10px;">
+      <figcaption>
+        Webcam input → image classification → label + confidence → paint system logic → generative canvas.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <h2>Process & iterations</h2>
+
+    <h3>Early exploration</h3>
+    <p>
+      I started with a very direct mapping: showing a circle, square, or pencil would immediately
+      generate many of that shape on the canvas. This helped me quickly test whether the camera,
+      classifier, and drawing logic were working together.
+    </p>
+
+    <p>
+      At this stage, the pencil produced short, jittery line segments, and shapes appeared rapidly
+      and repeatedly, sometimes overwhelming the composition.
+    </p>
+
+    <h3>Refinement</h3>
+    <p>
+      As the interaction evolved, I realized that generating many shapes per input felt less like
+      painting and more like triggering an effect. I experimented with producing a single shape
+      per object input to create a slower, more intentional rhythm.
+    </p>
+
+    <p>
+      The pencil tool went through multiple iterations: first drawing short segments, then loose
+      doodle-like motion, and finally transitioning toward straighter lines and gentle arcs to
+      better reflect Kandinsky’s graphic language.
+    </p>
+
+    <h3>Final direction</h3>
+    <p>
+      The final version balances continuous and discrete marks: the pencil feels gestural and
+      expressive, while shapes act as compositional anchors. The warm canvas background reinforces
+      a paper-like, gallery feel rather than a digital interface.
+    </p>
+
+    <p class="muted">
+      Unfortunately, I did not capture screenshots from every intermediate stage of development.
+      This is something I would improve in future projects by documenting more consistently.
+    </p>
+  </section>
+
+  <!-- CHALLENGES -->
+  <section>
+    <h2>Challenges</h2>
+
+    <h3>Gesture misclassification</h3>
+    <p>
+      One of the main challenges was misclassification between similar gestures, especially
+      Palm being confused with other classes. This occasionally caused unintended shapes to appear.
+    </p>
+
+    <h3>Edge clipping</h3>
+    <p>
+      Randomly placed shapes sometimes appeared partially outside the canvas, breaking the
+      composition. This highlighted the importance of spatial constraints in generative systems.
+    </p>
+  </section>
+
+  <!-- ROLE IN LIFE -->
+  <section>
+    <h2>Role in life</h2>
+    <p>
+      Kandinsky Cam Paint is designed as a playful, low-pressure creative ritual. It invites users
+      to experiment with abstraction using physical gestures instead of technical tools.
+    </p>
+    <p>
+      In a classroom, studio, or exhibition context, it can function as a quick interactive art
+      station where anyone can generate a unique abstract composition in under a minute.
+    </p>
+    <img src="images/img1.png" alt="Teachable Machine training classes screenshot" style="width:100%; border-radius:10px;">
+      <figcaption>
+  </section>
+
+  <!-- NEXT -->
+  <section>
+    <h2>What’s next</h2>
+    <ul>
+      <li>Further refine pencil behavior to feel even more intentional and rhythmic.</li>
+      <li>Improve gesture stability with multi-frame confirmation.</li>
+      <li>Add clearer onboarding text for first-time users.</li>
+    </ul>
+  </section>
+
+</main>
+
+</body>
+</html>
